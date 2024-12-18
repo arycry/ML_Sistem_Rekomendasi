@@ -54,6 +54,9 @@ Berikut merupakan variabel-variabel yang ada di dataset Sistem rekomendasi wisat
 - Age: Usia pengguna
 
 Selanjutnya, kita membaca untuk beberapa data di atas. 
+<img src="https://github.com/arycry/GambarMLTerapan/blob/main/15.jpg" width="75%">
+---
+<img src="https://github.com/arycry/GambarMLTerapan/blob/main/16.jpg" width="75%">
 
 ## Missing Value
 Jika dilihat dari gambar deskripsi variabel, terlihat ada beberapa kolom yang memiliki data kurang dari kolom `name` sampai `owner`. Sehingga akan dilakukan penghapusan missing value sehingga dataset terbebas dari missing value.
