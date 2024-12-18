@@ -1,48 +1,59 @@
-# Prediksi harga mobil bekas - Dita Ary Crystian
+# Sistem Rekomendasi Wisata Indonesia - Dita Ary Crystian
 
 # Domain Projek
 
-Perkembangan bisnis otomotif saat ini berkembang pesat. Perkembangan teknologi serta ketatnya persaingan antara perusahaan otomotif berpengaruh di produksi mobil baru yang pesat juga. Hal ini berimbas pada pasar mobil bekas. Pada pasar mobil bekas, harga cenderung turun secara periodik dan dipengaruhi oleh beberapa faktor, seperti tahun keluaran, merek mobil, penggunaan mobil, dan lain-lain. Seringkali pemilik mobil tidak mengetahui harga jual dari mobilnya yang berakibat kerugian dari pemulik mobil.  Dengan memperhatikan berbagai faktor tersebut, kita bisa membuat sistem prediksi yang membantu penjual dalam menentukan harga jual mobil bekas nantinya, sehingga transaksi berjalan lebih efektif dan efisien.  
+Perkembangan teknologi membawa perubahan pesat sehingga semua informasi dapat diakses dengan mudah. Salah satu sektor yang terdampak perkembangan teknologi yaitu sektor pariwisata. Indonesia memiliki potensi pariwisata yang sangat besar, dengan beragam destinasi menarik. Namun, banyaknya pilihan destinasi terkadang membuat wisatawan kesulitan menentukan tempat yang tepat untuk dikunjungi. Oleh karena itu, dibutuhkan sebuah sistem rekomendasi yang dapat membantu wisatawan menemukan destinasi yang sesuai dengan preferensi mereka. Proyek ini bertujuan membangun sistem rekomendasi destinasi wisata di Indonesia menggunakan dataset yang berisi informasi detail mengenai berbagai tempat wisata di Indonesia. 
 
-Referensi: [Jurnal Prediksi harga mobil bekas](https://publikasiilmiah.unwahas.ac.id/JINRPL/article/view/10266/pdf).
+Referensi: [Jurnal Prediksi rekomendasi wisata](https://ejournal.unama.ac.id/index.php/jurnalmsi/article/download/1262/1071).
 
 # Business Understanding
 
 ## Problem Statement
 
 Berdasarkan latar belakang yang dijelaskan di atas, kita mendapatkan rumusan masalah sebagai berikut:
-1. Bagaimana menentukan harga jual yang tepat untuk mobil bekas secara manual dengan banyaknya faktor yang mempengaruhi?
-2. Bagaimana membuat model yang baik untuk membuat prediksi harga jual mobil bekas?
+1. Bagaimana sistem dapat merekomendasikan destinasi wisata di Indonesia berdasarkan deskripsi, kategori, dan fasilitas yang tersedia di dataset?
+2. Bagaimana sistem dapat menyederhanakan proses pencarian informasi dan memberikan rekomendasi yang relevan secara efisien?
 
 ## Goals
 Berdasarkan rumusan masalah yang dijelaskan di atas, kita mendapatkan tujuan sebagai berikut:
-1. Membuat model yang dapat memperkirakan harga jual mobil bekas dengan efektif dan efisien
-2. Membuat model Machine learning untuk analisis prediksi harga jual mobil dengan error seminim mungkin
+1. Membangun sistem rekomendasi yang efektif menggunakan informasi deskripsi, kategori, dan fasilitas destinasi.
+2. Mengembangkan sistem rekomendasi yang efisien dan efektif dalam memberikan informasi dan rekomendasi destinasi wisata.
 
 ## Solution 
 Berdasarkan tujuan di atas, ada beberapa solusi yang bisa dilakukan, yaitu:
-1. Melakukan persiapan data supaya dapat dilatih menjadi model yang baik. 
-2. Membuat model dengan 3 algoritma yang berbeda, yaitu *Random Forest Regressor*, *XGBoost*, dan *Gradient Boosting*.
-3. Mengevaluasi model yang ada dengan MSE(*Mean Square Error*).
+1. Membuat sistem menggunakan Content-Based Filtering. Metode ini merekomendasikan destinasi yang serupa dengan destinasi yang sebelumnya disukai oleh pengguna, berdasarkan deskripsi dan fitur destinasi tersebut (misalnya, kategori, fasilitas).
+2. Membuat sistem menggunakan Collaborative Filtering. Metode ini merekomendasikan destinasi berdasarkan preferensi pengguna lain yang memiliki selera yang mirip. Dalam konteks ini, kita bisa menggunakan user-item interaction untuk memprediksi rating yang mungkin diberikan user ke suatu destinasi.
+
 
 # Data Understanding
-Dataset pada projek ini diambil dari kaggle, yaitu [Car Price Prediction](https://www.kaggle.com/datasets/sukhmandeepsinghbrar/car-price-prediction-dataset). Pada dataset ini berisi *file* dengan nama `cardekho` dengan ekstensi `csv` `(*Comma Separated Values*)`.
+Dataset pada projek ini diambil dari kaggle, yaitu [Sistem Rekomendasi Wisata](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination?select=tourism_with_id.csv). Pada dataset ini berisi 4 *file* dengan nama `package_tourism`, `tourism_rating`, `tourism_with_id`, dan `user` dengan ekstensi `csv` `(*Comma Separated Values*)`.
 
-Berikut merupakan deskripsi variabel dari dataset *Car Price Prediction*:
-<img src="https://github.com/arycry/GambarMLTerapan/blob/main/1.png" width="75%">
+Berikut merupakan deskripsi variabel dari dataset Sistem rekomendasi wisata:
+<img src="https://github.com/arycry/GambarMLTerapan/blob/main/14.jpg" width="75%">
 ## Variabel
-Berikut merupakan variabel-variabel yang ada di dataset Car Price Prediction:
-- name            : Nama mobil (merek dan model).
-- year            : Tahun pembuatan mobil.
-- selling_price   : Harga jual mobil .
-- km_driven       : Kilometer yang telah ditempuh mobil.
-- fuel            : Jenis bahan bakar yang digunakan (misalnya, Petrol, Diesel, CNG).
-- seller_type     : Jenis penjual (Individual atau Dealer).
-- transmission    : Jenis transmisi mobil (Manual atau Automatic).
-- owner           : Jumlah pemilik mobil sebelumnya.
-- mileage         : Jarak tempuh mobil per liter.
-- max power       : Tenaga maksimum yang dapat dihasilkan oleh mobil.
-- seats           : Banyaknya kursi yang tersedia di mobil.
+Berikut merupakan variabel-variabel yang ada di dataset Sistem rekomendasi wisata:
+- Package: ID paket wisata
+- City: Kota destinasi wisata
+- Place_Tourism1: destinasi paket wisata pertama 
+- Place_Tourism2: destinasi paket wisata kedua
+- Place_Tourism3: destinasi paket wisata ketiga 
+- Place_Tourism4: destinasi paket wisata keempat 
+- Place_Tourism5: destinasi paket wisata kelima
+- User_Id: ID pengguna/pemberi rating
+- Place_Id: ID destinasi wisata
+- Place_Ratings: rating destinasi wisata
+- Place_Name: nama destinasi wisata
+- Description: deskripsi destinasi wisata
+- Category: kategori destinasi wisata
+- Price: tiket masuk destinasi wisata
+- Time_minutes: Waktu tempuh menuju destinasi wisata
+- Coordinate: Koordinat dari destinasi wisata
+- Long: Longitude
+- Lat: Latitute
+- Location: Kota dan provinsi destinasi wisata
+- Age: Usia pengguna
+
+Selanjutnya, kita membaca untuk beberapa data di atas. 
 
 ## Missing Value
 Jika dilihat dari gambar deskripsi variabel, terlihat ada beberapa kolom yang memiliki data kurang dari kolom `name` sampai `owner`. Sehingga akan dilakukan penghapusan missing value sehingga dataset terbebas dari missing value.
