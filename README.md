@@ -55,7 +55,7 @@ Berikut merupakan variabel-variabel yang ada di dataset Sistem rekomendasi wisat
 
 Selanjutnya, kita membaca untuk beberapa data di atas. 
 <img src="https://github.com/arycry/GambarMLTerapan/blob/main/15.jpg" width="75%">
----
+
 <img src="https://github.com/arycry/GambarMLTerapan/blob/main/16.jpg" width="75%">
 
 ## Missing Value
