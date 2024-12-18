@@ -30,8 +30,8 @@ Dataset pada projek ini diambil dari kaggle, yaitu [Sistem Rekomendasi Wisata](h
 
 Berikut merupakan deskripsi variabel dari dataset Sistem rekomendasi wisata:
 <img src="https://github.com/arycry/GambarMLTerapan/blob/main/14.jpg" width="75%">
-## Variabel
-Berikut merupakan variabel-variabel yang ada di dataset Sistem rekomendasi wisata:
+## Univariate EDA
+Berikut merupakan variabel-variabel yang ada di dataset sistem rekomendasi wisata:
 - Package: ID paket wisata
 - City: Kota destinasi wisata
 - Place_Tourism1: destinasi paket wisata pertama 
@@ -56,7 +56,56 @@ Berikut merupakan variabel-variabel yang ada di dataset Sistem rekomendasi wisat
 Selanjutnya, kita membaca untuk beberapa data di atas. 
 <img src="https://github.com/arycry/GambarMLTerapan/blob/main/15.png" width="75%">
 
-<img src="https://github.com/arycry/GambarMLTerapan/blob/main/16.png" width="75%">
+<img src="https://github.com/arycry/GambarMLTerapan/blob/main/16.png" width="40%">
+
+Dari gambar tersebut, dapat diketahui bahwa:
+- Banyaknya tempat wisata yaitu 437 tempat dengan 6 kategori.
+- Banyaknya *user* sebanyak 300 orang dengan sebaran 28 kota di Indonesia.
+
+Setelah itu, kita ingin mengetahui berapa interval dari rating.
+<img src="https://github.com/arycry/GambarMLTerapan/blob/main/17.png" width="40%">
+Sehingga rating pada sistem ini adalah 1-5.
+
+## Data Preprocessing
+
+Pada tahap ini, kita ingin melihat total *user* dari menggabungkan `User_Id` dari tabel *rating_df* dan *user_df*
+####visualisasi
+Terlihat pada gambar, banyaknya *user* yang ada yaitu 300 *user*
+
+Setelah itu, kita akan melihat total tempat wisata dari menggabungkan `Place_Id` dari tabel *location_df* dan *rating_df*
+####visualisasi
+Terlihat pada gambar, banyaknya tempat wisata yang ada yaitu 437 tempat.
+
+Setelah itu, kita akan membuat dataframe baru, yaitu `place` dengan menggabungkan *location_df* dan *rating_df* dengan kunci yaitu `Place_Id`. Kita akan mengecek missing value dan jumlah rating dari dataframe yang baru kita buat. 
+####visualisasi
+####visualisasi
+
+Setelah itu, kita akan membuat dataframe untuk pembuatan sistem dengan metode *Content Based Filtering*. Langkah pertama, kita akan membuat dataframe bernama `all_place_name` dengan data dari `rating_df`. Setelah itu, kita gabungkan dataframe ini dengan kolom `place_name`, `category`, dan `city` dari tabel *location_df* dengan kunci `Place_Id`. Setelah itu kita akan menggabungkan lagi dengan kolom `age` dari tabel *user_df* dengan kunci `User_Id`. Hasil akhir 4 data pertama dataframe ini yaitu:
+
+####visualisasi
+
+## Data Preparation
+
+Pada tahap ini, kita akan mengecek nilai null, menghapus data duplikat, dan membuat dataframe yang siap untuk *content based filtering*. Hal ini penting dilakukan karena untuk memastikan data bersih, terhindar dari *error*, dan memastikan model bekerja lebih efektif. 
+
+Lebih detail, kita akan mengecek nilai null, deskriptif analisis untuk data numerik dan mengecek banyaknya data dari kolom `Place_Id`,`Place_Name`, dan `Category` di dataframe yang telah kita buat sebelumnya.
+
+####visualisasi
+
+Karena data sudah bersih, kita akan melakukan persiapan data. kita akan menghapus data duplikat di kolom `Place_Id`. Setelah itu, kita mengecek banyaknya data setelah drop duplikat. 
+
+Lalu, kita membuat dataframe `place_new`, yang terdiri dari kolom `place_id` yang diubah menjadi 'id', `place_name` yang diubah menjadi 'name', dan `place_cat` yang diubah menjadi 'category'.
+
+Dataframe ini telah siap untuk dibuat sistem dengan model *content based filtering*. 
+
+# Modeling
+## *Content *
+
+
+
+
+
+
 
 ## Missing Value
 Jika dilihat dari gambar deskripsi variabel, terlihat ada beberapa kolom yang memiliki data kurang dari kolom `name` sampai `owner`. Sehingga akan dilakukan penghapusan missing value sehingga dataset terbebas dari missing value.
