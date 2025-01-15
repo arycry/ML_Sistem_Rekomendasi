@@ -162,12 +162,16 @@ Berikut merupakan deskripsi analisis dari data numerik ini:
 
 ![17](https://github.com/user-attachments/assets/cb07cf28-91a7-442b-8f34-9fbb5a2fb9ce)
 
-Berdasarkan data diatas, terlihat bahwa banyaknya data unik pada kolom Place_Id sebanyak 437 data unik, Place_Name sebanyak 437 data unik, dan Location sebanyak 6 data unik. 
-Sehingga dataset sudah siap untuk masuk ke tahap data preparation.
+Berdasarkan data diatas, terlihat bahwa banyaknya data unik pada kolom Place_Id sebanyak 437 data unik, Place_Name sebanyak 437 data unik, dan Location sebanyak 6 data unik. Sehingga dataset sudah siap untuk masuk ke tahap data preparation.
+
+## Membuat dataframe untuk Modeling *Collaborative Filtering*
+
+Pada tahap ini, kita akan membuat variabel df yang memuat dataset rating_df. Setelah itu, akan kita lanjutkan pada data preparation. 
+
 # Data Preparation
 Pada tahap ini, kita akan membuat dataframe yang siap untuk *content based filtering*. Hal ini penting dilakukan karena untuk memastikan data bersih, terhindar dari *error*, dan memastikan model bekerja lebih efektif. 
 Berikut adalah langkah-langkah dalam data prparation ini:
-## mengecek kembali data
+## mengecek kembali data untuk *COntent Based Learning*
 Pada tahap ini, kita akan mengecek kembali data yang telah kita preprocessing di langkah sebelumnya. Kita akan mengurutkan data terlebih dahulu berdasarkan Place_Id. Berikut adalah 5 data pertama data tersebut:
 
 ![18](https://github.com/user-attachments/assets/98e67e72-c98d-4e30-978e-be1f72a5f493)
@@ -188,7 +192,7 @@ Pada tahap ini, kita akan konversi data series menjadi list, sehingga kita mengg
 Dataframe ini telah siap untuk dibuat sistem dengan model *content based filtering*.  
 
 ## Membuat dataframe untuk Modeling *Collaborative Filtering*
-Pada tahap ini, kita akan membuat dataframe untuk pembuatan sistem dengan metode *Collaborative Filtering*. Pada tahap pertama, kita akan membuat variabel df yang memuat dataset rating_df. Kemudian kita melakukan persiapan data untuk menyandikan (encode) fitur User_Id ke dalam indeks integer. Berikut merupakan hasil encode User_Id:
+Pada tahap ini, kita akan membuat dataframe untuk pembuatan sistem dengan metode *Collaborative Filtering*. Pada tahap pertama, kita melakukan persiapan data untuk menyandikan (encode) fitur User_Id ke dalam indeks integer. Berikut merupakan hasil encode User_Id:
 
 ![26](https://github.com/user-attachments/assets/1de8c201-d77d-4d7f-8486-ea72d6b5c304)
 
