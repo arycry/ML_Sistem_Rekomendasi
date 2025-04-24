@@ -80,30 +80,42 @@ Pada tahap ini akan diketahui banyaknya data dan mengecek beberapa kolom di semu
 ![2](https://github.com/user-attachments/assets/ba8aedbb-485f-4503-908c-cdd9304e5b78)
 
 
+![3](https://github.com/user-attachments/assets/bc5bbd71-0687-457d-a472-0b028bd07afc)
 
 
 Terlihat bahwa dataset package memiliki 100 data dan 7 variabel, dengan ada nya nilai null pada variabel Place_tourism4 dan Place_tourism5. Selain itu, pada dataset ini memiliki 5 data unik untuk variabel City, yaitu Jakarta, Yogyakarta, Bandung, Semarang, Surabaya, dengan banyaknya data di tiap kota adalah 20 paket.
 ### rating
 
+![4](https://github.com/user-attachments/assets/93dc1a4e-2d5a-4e24-8f51-d83b238f9e12)
 
 
-![5](https://github.com/user-attachments/assets/5560e291-682d-42ae-86b2-c5e6dfff7bdb)
+![5](https://github.com/user-attachments/assets/db9d93d0-61a0-4302-ae34-ba735ade11cc)
+
 
 Terlihat bahwa dataset rating memiliki 10000 data dan 3 variabel. Pada dataset ini juga memiliki 300 nilai unik pada variabel User_Id dan 5 nilai unik pada Place_Ratings, dengan nilai 1,2,3,4,5, dengan rating 4 memiliki data paling banyak daripada rating lainnya dengan selisih yang tipis.
 
 ### location
-![6](https://github.com/user-attachments/assets/29c4ca3a-ec7c-45e1-b69b-9715b708c7c2)
 
-![7](https://github.com/user-attachments/assets/ad0845ab-d561-4146-9355-942c20ca47d5)
+
+![6](https://github.com/user-attachments/assets/8aa5627d-9bf4-402b-9b5e-9720c2c1a24f)
+
+
+![7](https://github.com/user-attachments/assets/ccf509af-02d4-4f28-a106-a0b4ac85efe5)
+
 
 Terlihat bahwa dataset location memiliki 437 data dan 13 variabel, dimana merupakan banyak nya data unik dari tempat wisata, dan adanya nilai null pada kolom Time_Minutes dan Unnamed: 11. Pada dataset ini juga memiliki 6 nilai unik pada kolom Category, yaitu Budaya, Taman Hiburan, Cagar Alam, Bahari, Pusat Perbelanjaan, Tempat Ibadah dan Taman hiburan memiliki data paling banyak dibandingkan kategori lain dengan 135 data.
 
 ### user
-![8](https://github.com/user-attachments/assets/a18bf1d2-81b1-4bb3-96cc-e37b481cb2af)
 
-![9](https://github.com/user-attachments/assets/bfc72d1a-4c99-4031-a45a-8049954eaa14)
 
-![10](https://github.com/user-attachments/assets/b7a13040-abee-43a1-841c-1569a2aff584)
+![8](https://github.com/user-attachments/assets/caf937fd-21a0-45dd-9e95-4bdf63999c3a)
+
+
+![9](https://github.com/user-attachments/assets/1b69ae84-95e4-4926-a4a1-39e5b3cfee86)
+
+
+![10](https://github.com/user-attachments/assets/c565c7d2-acfb-4c29-9d3b-34970b807dee)
+
 
 Terlihat bahwa dataset user memiliki 300 data dan 3 variabel, yang merupakan banyaknya nilai unik pada user. Pada dataset ini juga memiliki 28 nilai unik untuk asal daerah user, yaitu kolom Location. Selain itu, dataset user memiliki data di kolom Age, yaitu usia user, dengan rentang 24 sampai dengan 40 tahun. Serta 5 user pemberi rating terbanyak berada di Bekasi, Semarang, Yogyakarta, Lampung, dan Bogor.
 # Data Preparation
@@ -119,51 +131,57 @@ Pada tahap ini dataset akan dibagi menjadi 2 bagian, yaitu user dan location(tem
 
 Pada tahap pertama akan dilihat total *user* dari menggabungkan `User_Id` dari tabel *rating_df* dan *user_df*
 
-![11](https://github.com/user-attachments/assets/daaf8f9e-1e1f-4974-a301-03a3d4d0ceb6)
+![11](https://github.com/user-attachments/assets/8240f18d-df27-4410-9158-1fbdcfe1e437)
+
 
 
 Terlihat pada gambar, banyaknya *user* yang ada yaitu 300 *user*
 
 Setelah itu, akan dilihat total tempat wisata dari menggabungkan `Place_Id` dari tabel *location_df* dan *rating_df*
 
-![12](https://github.com/user-attachments/assets/4a1104f3-76ea-4db0-b338-b9359f2fcf60)
+![12](https://github.com/user-attachments/assets/0e29745f-ac64-4272-9a91-944942a24b2b)
+
 
 
 Terlihat pada gambar, banyaknya tempat wisata yang ada yaitu 437 tempat.
 ### melihat total rating
 Selanjutnya, akan dibuat variabel baru, yaitu place, dengan menggabungkan data rating dan place untuk melihat banyaknya rating dari gabungan data yang ada, pada kasus ini data rating_df dan location_df. Setelah itu, akan dicoba mengecek variabel setelah penggabungan data. Terlihat bahwa variabel memiliki 10000 data rating dari gabungan dataset rating_df dan location_df, serta data ini memiliki nilai null pada kolom time_minutes dan Unnamed: 11. Setelah itu  akan diambil fitur numerik terlebih dahulu, kemudian akan dicari jumlah dari fitur numerik tersebut berdasarkan Place-Id. Berikut adalah hasil dari proses ini, yaitu melihat total rating:
 
-![13](https://github.com/user-attachments/assets/5d07624c-f661-4df0-82ec-e8a28c7761d2)
+![13](https://github.com/user-attachments/assets/ce7f27aa-15f1-4b6d-a4ab-ed3a63e0e567)
 
-## Data Preprocessing untuk *Content Based Learning*
+
+## Data Preprocessing untuk *Content Based Filtering*
 Pada tahap ini akan dilakukan langkah-langkah berikut:
-1. Membuat dataframe untuk Modeling *Content Based Learning* 
+1. Membuat dataframe untuk Modeling *Content Based Filtering* 
 2. Mengecek nilai null
 3. Mengecek nilai duplikat
 4. Mengecek deskripsi analisis dan banyaknya data unik
-5. Mengecek kembali data untuk *Content Based Learning*
+5. Mengecek kembali data untuk *Content Based Filtering*
 6. Mengecek nilai unik dari kolom Category
 7. Menghapus duplikat pada Place_Id
 8. Membuat data dictionary untuk modeling
 9. TF-IDF
 
 Berikut merupakan penjelasan dari masing-masing tahap:
-### Membuat dataframe untuk Modeling *Content Based Learning*
+### Membuat dataframe untuk Modeling *Content Based Filtering*
 Pada tahap ini, kita akan membuat dataframe untuk pembuatan sistem dengan metode *Content Based Filtering*. Langkah pertama, kita akan membuat dataframe bernama `all_place_name` dengan data dari `rating_df`. Setelah itu, kita gabungkan dataframe ini dengan kolom `place_name`, `category`, dan `city` dari tabel *location_df* dengan kunci `Place_Id`. Setelah itu kita akan menggabungkan lagi dengan kolom `age` dari tabel *user_df* dengan kunci `User_Id`. Hasil akhir 4 data pertama dataframe ini yaitu:
 
-![14](https://github.com/user-attachments/assets/fda66346-06e7-4201-b3f7-864c7ecac963)
+![14](https://github.com/user-attachments/assets/553ff0c4-af94-443e-94fe-a36a41dfb571)
+
 
 ### Mengecek nilai null
 Pada tahap ini, kita akan mengecek nilai null dari dataset yang telah dibuat tadi, berikut merupakan hasil pengecekan nilai null:
 
-![15](https://github.com/user-attachments/assets/4f1f00e0-4642-4ca5-8315-74514676f615)
+![15](https://github.com/user-attachments/assets/959ec073-a901-4298-ba07-f3d4f9c9e578)
+
 
 Terlihat bahwa data kita tidak memiliki nilai null, sehingga kita bisa lanjut ke tahap berikutnya. 
 
 ### Mengecek data duplikat
 Pada tahap ini, kita akan mengecek nilai duplikat dari dataset yang telah dibuat. Berikut merupakan hasil pengecekan nilai null:
 
-![24](https://github.com/user-attachments/assets/27e4c4c6-6126-4358-a1be-713f2e73d401)
+![24](https://github.com/user-attachments/assets/2aea2842-1f1d-4cf3-9dbf-850792fe6e39)
+
 
 Terlihat bahwa data kita tidak memiliki nilai null, sehingga kita perlu untuk menghapus ni[lai duplikat tersebut dengan fungsi `drop_duplicated()`
 
@@ -171,30 +189,38 @@ Terlihat bahwa data kita tidak memiliki nilai null, sehingga kita perlu untuk me
 Pada tahap ini, kita akan mengecek deskripsi analisis dan kita akan mengecek banyaknya data unik pada kolom Place_Id, Place_Name, dan Location.
 Berikut merupakan deskripsi analisis dari data numerik ini:
 
-![16](https://github.com/user-attachments/assets/bcdd000f-307e-451e-a3fb-b6ba29fc14dc)
+![16](https://github.com/user-attachments/assets/b2fb733d-830b-43cc-ad6f-1e2f7003a8ae)
+
+
 
 Berikut merupakan deskripsi analisis dari data numerik ini:
 
-![17](https://github.com/user-attachments/assets/cb07cf28-91a7-442b-8f34-9fbb5a2fb9ce)
+![17](https://github.com/user-attachments/assets/1cf6958e-973e-4166-a7ad-16e20247ab59)
+
 
 Berdasarkan data diatas, terlihat bahwa banyaknya data unik pada kolom Place_Id sebanyak 437 data unik, Place_Name sebanyak 437 data unik, dan Location sebanyak 6 data unik. Sehingga dataset sudah siap untuk langkah selanjutnya.
-### mengecek kembali data untuk *Content Based Learning*
-Pada tahap ini, kita akan mengecek kembali data yang telah kita preprocessing di langkah sebelumnya. Kita akan mengurutkan data terlebih dahulu berdasarkan Place_Id. Berikut adalah 5 data pertama data tersebut:
+### mengecek kembali data untuk *Content Based Filtering*
+Pada tahap ini akan dicek kembali data yang telah dipreprocessing di langkah sebelumnya. Data akan diurutkan terlebih dahulu berdasarkan Place_Id. Berikut adalah 5 data pertama data tersebut:
 
-![18](https://github.com/user-attachments/assets/98e67e72-c98d-4e30-978e-be1f72a5f493)
+![18](https://github.com/user-attachments/assets/c5cee268-6fb9-4f5d-811d-4dfdb39dee3e)
+
+
 
 ### mengecek nilai unik dari kolom Category
-Pada tahap ini, kita akan mengecek nilai unik dari kolom Category untuk mengecek apakah ada kategori tempat wisata. 
+Pada tahap ini akan diecek nilai unik dari kolom Category untuk mengecek apakah ada kategori tempat wisata. 
 
-![19](https://github.com/user-attachments/assets/598b6bb9-90f3-42b1-891b-0bb3c35a5a9f)
+![19](https://github.com/user-attachments/assets/003f995b-a83a-4599-a00e-def9a2734711)
 
-Terlihat bahwa kita mempunyai kategori tempat wisata yaitu Budaya, Taman Hiburan, Cagar Alam, Pusat Perbelanjaan, dan Tempat Ibadah.
+
+Terlihat bahwa data mempunyai kategori tempat wisata yaitu Budaya, Taman Hiburan, Cagar Alam, Pusat Perbelanjaan, dan Tempat Ibadah.
 
 ### Menghapus duplikat pada Place_Id
-Pada tahap ini, kita akan membuat variabel preparation yang berisi data all_place_name. Lalu kita akan mengurutkan data berdasarkan Place_Id. Lalu kita akan menghapus nilai duplikat dari Place_Id karena kita hanya menggunakan data unik dari data yang kita punya.
+Pada tahap ini akan dibuat variabel preparation yang berisi data all_place_name. Lalu data akan diurutkan berdasarkan Place_Id. Kemudian  nilai duplikat akan dihapus dari Place_Id karena hanya menggunakan data unik dari data yang ada.
 ### Membuat data dictionary untuk modeling
-Pada tahap ini, kita akan konversi data series menjadi list, sehingga kita menggunakan fungsi tolist untuk konversi data. Setelah itu, kita akan membuat data dictionary untuk data place_id, place_name, dan place_cat(place_category). Lalu kita akan mengecek data yang telah kita buat. Berikut merupakan 5 data pertama kita untuk modeling. 
-![20](https://github.com/user-attachments/assets/8c9e9282-4ae1-44e1-9284-fa1470d35ccd)
+Pada tahap ini akan dikonversi data series menjadi list, sehingga akan menggunakan fungsi tolist untuk konversi data. Setelah itu membuat data dictionary untuk data place_id, place_name, dan place_cat(place_category). Lalu akan dicek data yang telah dibuat. Berikut merupakan 5 data pertama untuk modeling. 
+
+![20](https://github.com/user-attachments/assets/c282a5df-07ec-45cc-9f97-79372d1186e7)
+
 
 Dataframe ini telah siap untuk Langkah selanjutnya. 
 ### TF-IDF
@@ -204,14 +230,16 @@ pemodelan bahasa alami. Tujuan utama dari metode  TF-IDF  adalah  untuk  mengeva
 dokumen dalam konteks koleksi dokumen yang lebih besar. Pada tahap ini, kita akan memanggil fungsi TfidfVectorizer() lalu kita akan 
 fit dengan kolom Category. Lalu kita akan melakukan fit transform dan kita akan menggunakan fungsi todense untuk menghasilkan vektor TF-IDF dalam bentuk matrix. Setelah itu, kita buat dataframe hasil dari TF-IDF. Berikut merupakan hasil TF-IDF yang berhasil kita buat:
 
-   ![21](https://github.com/user-attachments/assets/b9b2e8f9-8755-4ffa-8310-5f6d5c8e1c58)
+![21](https://github.com/user-attachments/assets/3c4b7500-0c90-4899-8f5e-79c80b0c8b99)
 
-Bisa terlihat bahwa Museum Taman Prasasti memiliki nilai 1 pada kolom budaya, sehingga Museum Taman Prasasti termasuk ke dalam 
+
+
+Bisa terlihat bahwa Museum Perangko memiliki nilai 1 pada kolom budaya, sehingga Museum Perangko termasuk ke dalam 
 kategori budaya, dan sebagainya.
 
-## Data Preprocessing untuk *Content Based Learning*
+## Data Preprocessing untuk *Collaborative Filtering*
 Pada tahap ini akan dilakukan langkah-langkah berikut:
-1. Membuat dataframe untuk Modeling *Content Based Learning* 
+1. Membuat dataframe untuk Modeling *Collaborative Filtering* 
 2. Acak data
 3. Membagi data menjadi data train dan data test
 
@@ -219,18 +247,21 @@ Pada tahap ini akan dilakukan langkah-langkah berikut:
 
 Pada tahap ini akan dibuat dataframe untuk pembuatan sistem dengan metode *Collaborative Filtering*. Pada tahap pertama dilakukan persiapan data untuk menyandikan (encode) fitur User_Id ke dalam indeks integer. Berikut merupakan hasil encode User_Id:
 
-![26](https://github.com/user-attachments/assets/1de8c201-d77d-4d7f-8486-ea72d6b5c304)
+![26](https://github.com/user-attachments/assets/2e41f7c4-f2c4-41a0-b163-fcc85065928f)
+
 
 Setelah itu, dilakukan persiapan data untuk menyandikan (encode) fitur Place_Id ke dalam indeks integer. Berikutnya dilakukan pemetaan userID dan placeID ke dataframe yang berkaitan. Setelah itu mengecek beberapa hal dalam data seperti jumlah user, jumlah tempat wisata, dan mengubah nilai rating menjadi float. Berikut merupakan hasil pengecekan banyaknya *user* dan *place*:
 
-![27](https://github.com/user-attachments/assets/27ef8fac-d732-490c-9b9a-07c025ae8c8a)
+![27](https://github.com/user-attachments/assets/6f342526-9328-44cc-8f3c-e9f3a63d57ef)
+
 
 Terlihat bahwa dataframe memiliki data *user* sebanyak 300 data, data *place* sebanyak 437 data, serta data rating dari 1.0 sampai 5.0.
 
 ### Acak data
 Pada tahap ini dilakukan acak data supaya distribusinya menjadi random. Acak dataframe dari kolom User_Id dan Place_Id. Berikut adalah hasil 5 data pertama dari acak data:
 
-![28](https://github.com/user-attachments/assets/58fb2b84-f715-40d3-94b9-1c2e4e7907c3)
+![28](https://github.com/user-attachments/assets/b7662354-18f0-4d82-aafc-a585a0f1efca)
+
 
 ### Membagi data train dan data validation
 Pada tahap ini  bagi data train dan validasi dengan komposisi 80:20. Namun sebelumnya  perlu dipetakan (mapping) data user dan place menjadi satu value terlebih dahulu. Lalu, buatlah rating dalam skala 0 sampai 1 agar mudah dalam melakukan proses training.
@@ -249,10 +280,12 @@ Pada tahap ini akan digunakan metode *Content Based Filtering* dan *Collaborativ
    tempat wisata dengan menampilkan nama tempat wisata dalam 5 sampel kolom (axis = 1) dan 10 sampel baris (axis=0). Berikut ini 
    merupakan hasil dari *Cosinus Similarity*:
 
-   ![22](https://github.com/user-attachments/assets/debade1f-8793-4eee-9e02-c838faf10488)
+   ![22](https://github.com/user-attachments/assets/dac23e8d-6de6-46b9-997c-9256a635b86a)
 
-   Pada contohnya, bisa terlihat bahwa Curug Malela memiliki angka 1 dengan Situ Patenggang dan Taman Hutan Raya Ir. H. Juanda. Ini 
-   berarti bahwa Curug Mamela memiliki kategori yang sama dengan Situ Patenggang dan Taman Hutan Raya Ir. H. Juanda.
+
+
+   Pada contohnya, bisa terlihat bahwa Curug Cipanas memiliki angka 1 dengan Bumi Perkemahan Batu Kuda dan Umbul Sidomukti. Ini 
+   berarti bahwa Curug Cipanas memiliki kategori yang sama dengan Bumi Perkemahan Batu Kuda dan Umbul Sidomukti.
 
 2. Membuat fungsi rekomendasi dan melihat hasil rekomendasi
 
@@ -260,11 +293,14 @@ Pada tahap ini akan digunakan metode *Content Based Filtering* dan *Collaborativ
    mendapatkan 5 rekomendasi tempat wisata dengan nama yang kita inputkan nanti. Setelah itu akan dilihat hasil dari rekomendasi 
    yang telah dibuat. Berikut merupakan input untuk rekomendasi.
 
-   ![23](https://github.com/user-attachments/assets/b2607b11-12ff-426f-b56e-2eb75cf8dbab)
+   ![23](https://github.com/user-attachments/assets/ee88c333-cbb9-44df-8695-d05d9ed0b206)
+
+
 
    Berikut merupakan hasil rekomendasi dari input yang telah dimasukkan:
 
-   ![25](https://github.com/user-attachments/assets/2d138277-8653-4e0c-8abe-3c432842ebb9)
+   ![25](https://github.com/user-attachments/assets/e7b65e82-8352-41a9-b582-710f90dad51f)
+
 
    Terlihat bahwa fungsi merekomendasikan tempat wisata dengan category yang sama, yaitu kategori cagar alam.
 
@@ -283,14 +319,18 @@ Pada teknik *collaborative filtering* memerlukan sekumpulan item yang didasarkan
 
    Pada tahap ini akan dilakukan visualisasi proses training, plot metrik evaluasi dengan matplotlib. Berikut merupakan visualisasinya:
 
-   ![29](https://github.com/user-attachments/assets/eeba095b-f603-4a8c-8bce-2f0c4d4f7e3c)
+   ![29](https://github.com/user-attachments/assets/34e013e6-cf8b-4102-8ebb-7e94608c87e9)
+
+
 
     
 3. Rekomendasi
    
    Sebelum melakukan prediksi sistem rekomendasi akan dibuat variabel place_not_visited terlebih dahulu karena daftar place_not_visited inilah yang akan menjadi resto yang direkomendasikan. Selanjutnya akan dilakukan prediksi untuk memperoleh 10 rekomendasi tempat wisata. Berikut ini merupakan hasil 10 rekomendasi wisata berdasarkan rating:
 
-   ![30](https://github.com/user-attachments/assets/b6e35b80-2683-4ef8-bb33-387e29411f88)
+   ![30](https://github.com/user-attachments/assets/d8bf51a0-0975-43e2-af85-5ba7df27a51e)
+
+
 
 
 ### Kelebihan dan Kekurangan
@@ -314,19 +354,25 @@ Interpretasi: Prediksi negatif dan itu salah.
 
 Salah satu nilai yang bisa dihitung dengan Confusion Matrix adalah precision. Precision adalah salah satu metrik penting dalam evaluasi sistem pengambilan informasi yang mengukur tingkat ketepatan atau akurasi sistem dalam menemukan dokumen yang relevan dengan kebutuhan pengguna.  Berikut rumus dari precision di sistem rekomendasi:
 
-![31](https://github.com/user-attachments/assets/ea678bbd-340e-4f71-a9d1-db012085f3c4)
+![31](https://github.com/user-attachments/assets/214489d6-57a7-452e-96ad-4871ed34ce65)
+
 
 Namun pada sistem rekomendasi, Precision pada K adalah rasio item relevan yang diidentifikasi dengan benar dalam total item yang direkomendasikan dalam daftar sepanjang K. Sederhananya, ini menunjukkan berapa banyak item yang direkomendasikan atau diambil yang benar-benar relevan. Berikut rumus precison di sistem rekomendasi:
 
-![32](https://github.com/user-attachments/assets/ef15d37c-c78a-4030-9850-2458ae220f89)
+![32](https://github.com/user-attachments/assets/efcc7cd7-fc98-4924-9b54-df25942497af)
+
 
 Dengan menggunakan rumus diatas, akan dicari nilai precision pada sistem rekomendasi *Content Based Filtering*. Tampilkan data input terlebih dahulu:
 
-![23](https://github.com/user-attachments/assets/02e0c154-2fff-4f38-ae98-998e98cbf510)
+![23](https://github.com/user-attachments/assets/ff86dce3-735d-4fb3-8bb2-50923e79cb21)
+
+
 
 Pada data input digunakan data Kebun Binatang Ragunan dengan Category Cagar Alam. Setelah itu akan ditampilkan hasil 5 rekomendasi yang dihasilkan dari input tersebut:
 
-![25](https://github.com/user-attachments/assets/a861f595-267d-4500-ac66-24e2387a2fa8)
+![25](https://github.com/user-attachments/assets/ffecaf87-f085-474a-a61a-3b50d7dc4928)
+
+
 
 Terlihat diatas bahwa 5 rekomendasi yang dihasilkan memiliki category yang sama, yaitu Cagar Alam. Maka, sesuai dengan rumus diatas:
 
@@ -334,13 +380,14 @@ Terlihat diatas bahwa 5 rekomendasi yang dihasilkan memiliki category yang sama,
 `precision = 5 / 5`
 `precision = 1`
 
-Dari 5 rekomendasi di atas didapatkan nilai precision sebesar 1 dari model *Content Based Learning* yang dikembangkan. Artinya model bekerja dengan sangat baik.
+Dari 5 rekomendasi di atas didapatkan nilai precision sebesar 1 dari model *Content Based Filtering* yang dikembangkan. Artinya model bekerja dengan sangat baik.
 
 ## Evaluasi model *Collaborative Filtering* menggunakan RMSE
 
 Root mean square error (RMSE) adalah simpangan baku residual, atau selisih rata-rata antara nilai proyeksi dan nilai aktual yang dihasilkan oleh model statistik. Mengingat bahwa rumus RMSE pada dasarnya adalah rumus simpangan baku, rumus ini seharusnya dapat dikenali oleh siapa pun yang memiliki pelatihan dalam statistik. Itu masuk akal karena RMSE sama dengan simpangan baku residual. Rumus ini menghitung varians antara nilai yang diamati dan yang diharapkan. Berikut adalah rumus dari RMSE:
 
-![33](https://github.com/user-attachments/assets/b3166cff-c306-49ad-a46d-20104a451f06)
+![33](https://github.com/user-attachments/assets/9e171645-010d-4e31-beda-a9d6fc99f864)
+
 
 Dengan: 
 
@@ -351,13 +398,15 @@ Dengan:
 
 RMSE membantu mengevaluasi model dengan melihat error pada saat training. Berikut merupakan visualisasi training pada projek ini:
 
-![29](https://github.com/user-attachments/assets/88a7ab83-6ad8-4eb2-afec-c4eca46be845)
+![29](https://github.com/user-attachments/assets/5a6ed488-dfcf-4a78-be49-0d63490473c9)
 
-Berdasarkan grafik tersebut, didapatkan bahwa RMSE dari data train adalah 0.3091 dan RMSE dari data validation adalah 0.3658, dimana sistem yang dikembangkan sudah baik untuk model Collaborative Filtering ini.
+
+
+Berdasarkan grafik tersebut, didapatkan bahwa RMSE dari data train adalah 0.3144 dan RMSE dari data validation adalah 0.3661, dimana sistem yang dikembangkan sudah baik untuk model Collaborative Filtering ini.
 
 # Kesimpulan
 
-Projek ini berhasil membuat sistem rekomendasi untuk tempat wisata dengan 2 algoritma sistem rekomendasi, yaitu *Content Based Filtering* dan *Collaborative Filtering*. Pada projek ini, kita berhasil membuat langkah-langkah pengerjaan sistem rekomendasi, seperti Data Understanding, EDA, Data preprocessing, Data Preparation, Modeling, serta evaluasi model. Pada sistem rekomendasi *Content baseed Filtering*, hasil evaluasi yang dihasilkan sangat baik, sehingga kita berhasil membangun sistem rekomendasi yang efektif menggunakan informasi deskripsi, kategori, dan fasilitas destinasi. Begitu pula dengan sistem rekomendasi *Collaborative Filtering*, hasil evaluasi yang dihasilkan cukup baik, sehingga kita berhasil membangun sistem rekomendasi yang efisien dan efektif menggunakan rating destinasi wisata. Namun hasil projek ini belum sempurna karena dataset yang terbatas, sehingga bisa saja model merekomendasikan hal yang kurang cocok dengan input tempat wisata. 
+Projek ini berhasil membuat sistem rekomendasi untuk tempat wisata dengan 2 algoritma sistem rekomendasi, yaitu *Content Based Filtering* dan *Collaborative Filtering*. Pada projek ini, kita berhasil membuat langkah-langkah pengerjaan sistem rekomendasi, seperti Data Understanding, Data Preparation, Modeling, serta evaluasi model. Pada sistem rekomendasi *Content Based Filtering*, hasil evaluasi yang dihasilkan sangat baik, sehingga kita berhasil membangun sistem rekomendasi yang efektif menggunakan informasi deskripsi, kategori, dan fasilitas destinasi. Begitu pula dengan sistem rekomendasi *Collaborative Filtering*, hasil evaluasi yang dihasilkan cukup baik, sehingga kita berhasil membangun sistem rekomendasi yang efisien dan efektif menggunakan rating destinasi wisata. Namun hasil projek ini belum sempurna karena dataset yang terbatas, sehingga bisa saja model merekomendasikan hal yang kurang cocok dengan input tempat wisata. 
 
 # Reference
 - Raysa Puteri Ardhiyani, Herry Mulyono. 2018. ANALISIS DAN PERANCANGAN SISTEM INFORMASI PARIWISATA BERBASIS WEB SEBAGAI MEDIA PROMOSI PADA KABUPATEN TEBO . Jurnal Manajemen Sistem Informasi. Vol.3, No.1, Maret 2018
