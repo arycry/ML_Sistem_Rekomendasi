@@ -10,19 +10,19 @@ Referensi: [Jurnal rekomendasi wisata](https://ejournal.unama.ac.id/index.php/ju
 
 ## Problem Statement
 
-Berdasarkan latar belakang yang dijelaskan di atas, kita mendapatkan rumusan masalah sebagai berikut:
+Berdasarkan latar belakang yang dijelaskan di atas, rumusan masalah yang didapatkan sebagai berikut:
 1. Bagaimana sistem dapat merekomendasikan destinasi wisata di Indonesia berdasarkan deskripsi, kategori, dan fasilitas yang tersedia di dataset?
 2. Bagaimana sistem dapat menyederhanakan proses pencarian informasi dan memberikan rekomendasi yang relevan secara efisien?
 
 ## Goals
-Berdasarkan rumusan masalah yang dijelaskan di atas, kita mendapatkan tujuan sebagai berikut:
+Berdasarkan rumusan masalah yang dijelaskan di atas, tujuan dari projek ini adalah sebagai berikut:
 1. Membangun sistem rekomendasi yang efektif menggunakan informasi deskripsi, kategori, dan fasilitas destinasi.
 2. Membangun sistem rekomendasi yang efisien dan efektif menggunakan rating destinasi wisata.
 
 ## Solution 
 Berdasarkan tujuan di atas, ada beberapa solusi yang bisa dilakukan, yaitu:
 1. Membuat sistem menggunakan Content-Based Filtering. Metode ini merekomendasikan destinasi yang serupa dengan destinasi yang sebelumnya disukai oleh pengguna, berdasarkan deskripsi dan fitur destinasi tersebut (misalnya, kategori, fasilitas).
-2. Membuat sistem menggunakan Collaborative Filtering. Metode ini merekomendasikan destinasi berdasarkan preferensi pengguna lain yang memiliki selera yang mirip. Dalam konteks ini, kita bisa menggunakan user-item interaction untuk memprediksi rating yang mungkin diberikan user ke suatu destinasi.
+2. Membuat sistem menggunakan Collaborative Filtering. Metode ini merekomendasikan destinasi berdasarkan preferensi pengguna lain yang memiliki selera yang mirip. Dalam konteks ini, gunakan user-item interaction untuk memprediksi rating yang mungkin diberikan user ke suatu destinasi.
 
 
 # Data Understanding
@@ -164,29 +164,29 @@ Pada tahap ini akan dilakukan langkah-langkah berikut:
 
 Berikut merupakan penjelasan dari masing-masing tahap:
 ### Membuat dataframe untuk Modeling *Content Based Filtering*
-Pada tahap ini, kita akan membuat dataframe untuk pembuatan sistem dengan metode *Content Based Filtering*. Langkah pertama, kita akan membuat dataframe bernama `all_place_name` dengan data dari `rating_df`. Setelah itu, kita gabungkan dataframe ini dengan kolom `place_name`, `category`, dan `city` dari tabel *location_df* dengan kunci `Place_Id`. Setelah itu kita akan menggabungkan lagi dengan kolom `age` dari tabel *user_df* dengan kunci `User_Id`. Hasil akhir 4 data pertama dataframe ini yaitu:
+Pada tahap ini, akan dibuat dataframe untuk pembuatan sistem dengan metode *Content Based Filtering*. Langkah pertama akan dibuat dataframe bernama `all_place_name` dengan data dari `rating_df`. Setelah itu, gabungkan dataframe ini dengan kolom `place_name`, `category`, dan `city` dari tabel *location_df* dengan kunci `Place_Id`. Setelah itu akan digabungkan lagi dengan kolom `age` dari tabel *user_df* dengan kunci `User_Id`. Hasil akhir 4 data pertama dataframe ini yaitu:
 
 ![14](https://github.com/user-attachments/assets/553ff0c4-af94-443e-94fe-a36a41dfb571)
 
 
 ### Mengecek nilai null
-Pada tahap ini, kita akan mengecek nilai null dari dataset yang telah dibuat tadi, berikut merupakan hasil pengecekan nilai null:
+Pada tahap ini, akan dicek nilai null dari dataset yang telah dibuat tadi, berikut merupakan hasil pengecekan nilai null:
 
 ![15](https://github.com/user-attachments/assets/959ec073-a901-4298-ba07-f3d4f9c9e578)
 
 
-Terlihat bahwa data kita tidak memiliki nilai null, sehingga kita bisa lanjut ke tahap berikutnya. 
+Terlihat bahwa data tidak memiliki nilai null, sehingga bisa lanjut ke tahap berikutnya. 
 
 ### Mengecek data duplikat
-Pada tahap ini, kita akan mengecek nilai duplikat dari dataset yang telah dibuat. Berikut merupakan hasil pengecekan nilai null:
+Pada tahap ini akan dicek nilai duplikat dari dataset yang telah dibuat. Berikut merupakan hasil pengecekan nilai null:
 
 ![24](https://github.com/user-attachments/assets/2aea2842-1f1d-4cf3-9dbf-850792fe6e39)
 
 
-Terlihat bahwa data kita tidak memiliki nilai null, sehingga kita perlu untuk menghapus ni[lai duplikat tersebut dengan fungsi `drop_duplicated()`
+Terlihat bahwa data tidak memiliki nilai null, sehingga perlu untuk menghapus nilai duplikat tersebut dengan fungsi `drop_duplicated()`
 
 ### Mengecek deskripsi analisis dan banyaknya data unik
-Pada tahap ini, kita akan mengecek deskripsi analisis dan kita akan mengecek banyaknya data unik pada kolom Place_Id, Place_Name, dan Location.
+Pada tahap ini akan dilakukan pengecekan deskripsi analisis dan banyaknya data unik pada kolom Place_Id, Place_Name, dan Location.
 Berikut merupakan deskripsi analisis dari data numerik ini:
 
 ![16](https://github.com/user-attachments/assets/b2fb733d-830b-43cc-ad6f-1e2f7003a8ae)
@@ -227,8 +227,8 @@ Dataframe ini telah siap untuk Langkah selanjutnya.
 
 Metode Term Frequency-Inverse Document Frequency (TF-IDF) adalah salah satu teknik  yang  digunakan  dalam  pengolahan  teks dan 
 pemodelan bahasa alami. Tujuan utama dari metode  TF-IDF  adalah  untuk  mengevaluasi seberapa penting suatu kata (term) dalam sebuah 
-dokumen dalam konteks koleksi dokumen yang lebih besar. Pada tahap ini, kita akan memanggil fungsi TfidfVectorizer() lalu kita akan 
-fit dengan kolom Category. Lalu kita akan melakukan fit transform dan kita akan menggunakan fungsi todense untuk menghasilkan vektor TF-IDF dalam bentuk matrix. Setelah itu, kita buat dataframe hasil dari TF-IDF. Berikut merupakan hasil TF-IDF yang berhasil kita buat:
+dokumen dalam konteks koleksi dokumen yang lebih besar. Pada tahap ini  akan dipanggil fungsi TfidfVectorizer() lalu akan dilakukan 
+fit dengan kolom Category. Kemudia akan dilakukan fit transform dan menggunakan fungsi todense untuk menghasilkan vektor TF-IDF dalam bentuk matrix. Setelah itu buat dataframe hasil dari TF-IDF. Berikut merupakan hasil TF-IDF yang berhasil dibuat:
 
 ![21](https://github.com/user-attachments/assets/3c4b7500-0c90-4899-8f5e-79c80b0c8b99)
 
@@ -290,7 +290,7 @@ Pada tahap ini akan digunakan metode *Content Based Filtering* dan *Collaborativ
 2. Membuat fungsi rekomendasi dan melihat hasil rekomendasi
 
    Setelah itu akan dibuat fungsi untuk mendapatkan rekomendasi tempat wisata. Pada fungsi ini  akan dibuat fungsi untuk 
-   mendapatkan 5 rekomendasi tempat wisata dengan nama yang kita inputkan nanti. Setelah itu akan dilihat hasil dari rekomendasi 
+   mendapatkan 5 rekomendasi tempat wisata dengan nama yang diinputkan nanti. Setelah itu akan dilihat hasil dari rekomendasi 
    yang telah dibuat. Berikut merupakan input untuk rekomendasi.
 
    ![23](https://github.com/user-attachments/assets/ee88c333-cbb9-44df-8695-d05d9ed0b206)
@@ -406,7 +406,7 @@ Berdasarkan grafik tersebut, didapatkan bahwa RMSE dari data train adalah 0.3144
 
 # Kesimpulan
 
-Projek ini berhasil membuat sistem rekomendasi untuk tempat wisata dengan 2 algoritma sistem rekomendasi, yaitu *Content Based Filtering* dan *Collaborative Filtering*. Pada projek ini, kita berhasil membuat langkah-langkah pengerjaan sistem rekomendasi, seperti Data Understanding, Data Preparation, Modeling, serta evaluasi model. Pada sistem rekomendasi *Content Based Filtering*, hasil evaluasi yang dihasilkan sangat baik, sehingga kita berhasil membangun sistem rekomendasi yang efektif menggunakan informasi deskripsi, kategori, dan fasilitas destinasi. Begitu pula dengan sistem rekomendasi *Collaborative Filtering*, hasil evaluasi yang dihasilkan cukup baik, sehingga kita berhasil membangun sistem rekomendasi yang efisien dan efektif menggunakan rating destinasi wisata. Namun hasil projek ini belum sempurna karena dataset yang terbatas, sehingga bisa saja model merekomendasikan hal yang kurang cocok dengan input tempat wisata. 
+Projek ini berhasil membuat sistem rekomendasi untuk tempat wisata dengan 2 algoritma sistem rekomendasi, yaitu *Content Based Filtering* dan *Collaborative Filtering*. Pada projek ini telah berhasil membuat langkah-langkah pengerjaan sistem rekomendasi, seperti Data Understanding, Data Preparation, Modeling, serta evaluasi model. Pada sistem rekomendasi *Content Based Filtering*, hasil evaluasi yang dihasilkan sangat baik, sehingga berhasil membangun sistem rekomendasi yang efektif menggunakan informasi deskripsi, kategori, dan fasilitas destinasi. Begitu pula dengan sistem rekomendasi *Collaborative Filtering*, hasil evaluasi yang dihasilkan cukup baik, sehingga berhasil membangun sistem rekomendasi yang efisien dan efektif menggunakan rating destinasi wisata. Namun hasil projek ini belum sempurna karena dataset yang terbatas, sehingga bisa saja model merekomendasikan hal yang kurang cocok dengan input tempat wisata. 
 
 # Reference
 - Raysa Puteri Ardhiyani, Herry Mulyono. 2018. ANALISIS DAN PERANCANGAN SISTEM INFORMASI PARIWISATA BERBASIS WEB SEBAGAI MEDIA PROMOSI PADA KABUPATEN TEBO . Jurnal Manajemen Sistem Informasi. Vol.3, No.1, Maret 2018
