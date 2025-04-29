@@ -67,7 +67,7 @@ print('Banyaknya data rating: ', len(rating_df))
 print('Banyaknya data location: ', len(location_df))
 print('Banyaknya data user: ', len(user_df))
 
-"""Terlihat bahwa dataset indonesia tourism destination memiliki 4 sub-dataset, yaitu untuk package, rating, location, serta user, dengan masing-masing banyaknya data yaitu 100 untuk package, 1000 untuk rating, 437 untuk location, dan 300 untuk user.
+"""Terlihat bahwa dataset indonesia tourism destination memiliki 4 sub-dataset, yaitu untuk package, rating, location, serta user, dengan masing-masing banyaknya data yaitu 100 untuk package, 10000 untuk rating, 437 untuk location, dan 300 untuk user.
 
 ## Univariate EDA
 
