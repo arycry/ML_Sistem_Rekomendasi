@@ -21,8 +21,8 @@ Berdasarkan rumusan masalah yang dijelaskan di atas, tujuan dari projek ini adal
 
 ## Solution 
 Berdasarkan tujuan di atas, ada beberapa solusi yang bisa dilakukan, yaitu:
-1. Membuat sistem menggunakan Content-Based Filtering. Metode ini merekomendasikan destinasi yang serupa dengan destinasi yang sebelumnya disukai oleh pengguna, berdasarkan deskripsi dan fitur destinasi tersebut (misalnya, kategori, fasilitas).
-2. Membuat sistem menggunakan Collaborative Filtering. Metode ini merekomendasikan destinasi berdasarkan preferensi pengguna lain yang memiliki selera yang mirip. Dalam konteks ini, gunakan user-item interaction untuk memprediksi rating yang mungkin diberikan user ke suatu destinasi.
+1. Menerapkan Content-Based Filtering untuk merekomendasikan destinasi yang serupa dengan destinasi yang sebelumnya disukai oleh pengguna, berdasarkan deskripsi dan fitur destinasi tersebut (misalnya, kategori, fasilitas).
+2. Menerapkan Collaborative Filtering untuk merekomendasikan destinasi berdasarkan preferensi pengguna lain yang memiliki selera yang mirip. Dalam konteks ini, gunakan user-item interaction untuk memprediksi rating yang mungkin diberikan user ke suatu destinasi.
 
 
 # Data Understanding
@@ -31,7 +31,6 @@ Pada tahap ini, akan lakukan hal- hal berikut:
 2. Mengecek masing-masing variabel dari semua dataset
 3. Melakukan EDA dari masing-masing dataset
 
-
 Berikut adalah masing-masing penjelasan nya:
 
 ## Deskripsi Dataset
@@ -39,7 +38,7 @@ Berikut adalah masing-masing penjelasan nya:
 ![1](https://github.com/user-attachments/assets/c4a2a976-13e3-40b4-b4da-ffd3c52fa220)
 
 
-Dataset pada projek ini diambil dari kaggle, yaitu [Sistem Rekomendasi Wisata](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination?select=tourism_with_id.csv). Pada dataset ini berisi 4 *file* dengan nama `package_tourism`, `tourism_rating`, `tourism_with_id`, dan `user` dengan ekstensi `csv` `(*Comma Separated Values*)`, dengan masing-masing banyaknya data yaitu 100 data dan 7 variabel untuk `package_tourism(package)`, 1000 data dan 3 variabel untuk `tourism_rating(rating)`, 437 data dan 13 variabel untuk `tourism_with_id(location)`, serta 300 data dan 3 variabel untuk `user`.
+Dataset pada projek ini diambil dari kaggle, yaitu [Sistem Rekomendasi Wisata](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination?select=tourism_with_id.csv). Pada dataset ini berisi 4 *file* dengan nama `package_tourism`, `tourism_rating`, `tourism_with_id`, dan `user` dengan ekstensi `csv` `(*Comma Separated Values*)`,dengan masing-masing banyaknya data yaitu 100 data dan 7 variabel untuk `package_tourism(package)`, 10000 data dan 3 variabel untuk `tourism_rating(rating)`, 437 data dan 13 variabel untuk `tourism_with_id(location)`, serta 300 data dan 3 variabel untuk `user`.
 Berikut adalah penjelasan variabel dari masing-masing dataset:
 ### package_tourism(package)
 Berikut merupakan deskripsi variabel dari dataset `package_tourism(package)`:
@@ -83,7 +82,7 @@ Pada tahap ini akan diketahui banyaknya data dan mengecek beberapa kolom di semu
 ![3](https://github.com/user-attachments/assets/bc5bbd71-0687-457d-a472-0b028bd07afc)
 
 
-Terlihat bahwa dataset package memiliki 100 data dan 7 variabel, dengan ada nya nilai null pada variabel Place_tourism4 dan Place_tourism5. Selain itu, pada dataset ini memiliki 5 data unik untuk variabel City, yaitu Jakarta, Yogyakarta, Bandung, Semarang, Surabaya, dengan banyaknya data di tiap kota adalah 20 paket.
+Terlihat bahwa dataset package memiliki 100 data dan 7 variabel, dengan ada nya nilai null pada variabel Place_tourism4 dan Place_tourism5. Selain itu, pada dataset ini memiliki 5 data unik untuk variabel City, yaitu Jakarta, Yogyakarta, Bandung, Semarang, Surabaya, dengan banyaknya data di tiap kota adalah 20 paket. Ini berarti bahwa pada dataset ini, semua kota memiliki jumlah tempat wisata yang sama.
 ### rating
 
 ![4](https://github.com/user-attachments/assets/93dc1a4e-2d5a-4e24-8f51-d83b238f9e12)
@@ -92,7 +91,7 @@ Terlihat bahwa dataset package memiliki 100 data dan 7 variabel, dengan ada nya 
 ![5](https://github.com/user-attachments/assets/db9d93d0-61a0-4302-ae34-ba735ade11cc)
 
 
-Terlihat bahwa dataset rating memiliki 10000 data dan 3 variabel. Pada dataset ini juga memiliki 300 nilai unik pada variabel User_Id dan 5 nilai unik pada Place_Ratings, dengan nilai 1,2,3,4,5, dengan rating 4 memiliki data paling banyak daripada rating lainnya dengan selisih yang tipis.
+Terlihat bahwa dataset rating memiliki 10000 data dan 3 variabel. Pada dataset ini juga memiliki 300 nilai unik pada variabel User_Id dan 5 nilai unik pada Place_Ratings, dengan nilai 1,2,3,4,5, dengan rating 4 memiliki data paling banyak daripada rating lainnya dengan selisih yang tipis, sehingga para pengguna cukup puas dengan fasilitas tempat wisata yang ada.
 
 ### location
 
@@ -103,7 +102,7 @@ Terlihat bahwa dataset rating memiliki 10000 data dan 3 variabel. Pada dataset i
 ![7](https://github.com/user-attachments/assets/ccf509af-02d4-4f28-a106-a0b4ac85efe5)
 
 
-Terlihat bahwa dataset location memiliki 437 data dan 13 variabel, dimana merupakan banyak nya data unik dari tempat wisata, dan adanya nilai null pada kolom Time_Minutes dan Unnamed: 11. Pada dataset ini juga memiliki 6 nilai unik pada kolom Category, yaitu Budaya, Taman Hiburan, Cagar Alam, Bahari, Pusat Perbelanjaan, Tempat Ibadah dan Taman hiburan memiliki data paling banyak dibandingkan kategori lain dengan 135 data.
+Terlihat bahwa dataset location memiliki 437 data dan 13 variabel, dimana merupakan banyak nya data unik dari tempat wisata, dan adanya nilai null pada kolom Time_Minutes dan Unnamed: 11. Pada dataset ini juga memiliki 6 nilai unik pada kolom Category, yaitu Budaya, Taman Hiburan, Cagar Alam, Bahari, Pusat Perbelanjaan, Tempat Ibadah dan Taman hiburan. Bisa terlihat di grafik bahwa taman hiburan memiliki data paling banyak dibandingkan kategori lain dengan 135 data.
 
 ### user
 
@@ -127,7 +126,7 @@ Pada tahap ini akan dilakukan langkah-langkah berikut:
 
 Berikut merupakan penjelasan dari masing-masing tahap:
 ### melihat total user dan location
-Pada tahap ini dataset akan dibagi menjadi 2 bagian, yaitu user dan location(tempat wisata). Kemudian gabungkan dataset rating_df dan user_df untuk mengetahui total dari user, gabungkan dataset location_df dan rating_df untuk mengetahui total dari location.
+Pada tahap ini akan dilakukan pengecekan total user dan location untuk memastikan banyaknya user unik dan location unik yang ada di dataset. Pada tahap ini dataset akan dibagi menjadi 2 bagian, yaitu user dan location(tempat wisata). Kemudian gabungkan dataset rating_df dan user_df untuk mengetahui total dari user, gabungkan dataset location_df dan rating_df untuk mengetahui total dari location.
 
 Pada tahap pertama akan dilihat total *user* dari menggabungkan `User_Id` dari tabel *rating_df* dan *user_df*
 
@@ -264,11 +263,11 @@ Pada tahap ini dilakukan acak data supaya distribusinya menjadi random. Acak dat
 
 
 ### Membagi data train dan data validation
-Pada tahap ini  bagi data train dan validasi dengan komposisi 80:20. Namun sebelumnya  perlu dipetakan (mapping) data user dan place menjadi satu value terlebih dahulu. Lalu, buatlah rating dalam skala 0 sampai 1 agar mudah dalam melakukan proses training.
+Pada tahap ini, bagi data train dan validasi dengan komposisi 80:20 supaya data bisa dilakukan modeling. Namun sebelumnya  perlu dipetakan (mapping) data user dan place menjadi satu value terlebih dahulu. Lalu, buatlah rating dalam skala 0 sampai 1 agar mudah dalam melakukan proses training.
 
 # Data Modeling
 Pada tahap ini akan digunakan metode *Content Based Filtering* dan *Collaborative Filtering* untuk menjawab problem statement dari tahap business understanding
-## *Content Based Filtering*
+## *Content Based Filtering* dengan *Cosinus Similarity*
 *Content-based filtering* adalah metode yang digunakan dalam sistem rekomendasi dan analisis data yang berfokus pada karakteristik atau konten dari item-item yang ingin direkomendasikan atau dianalisis. Pendekatan ini menggunakan atribut-atribut atau fitur-fitur item untuk menentukan kesamaan antara item yang ada dan preferensi pengguna. Tahapan-tahapan yang akan dilakukan yaitu:
 
 1. *Cosinus Similarity*
@@ -352,7 +351,7 @@ Interpretasi: Prediksi positif dan itu salah.
 - False Negative (FN): (Kesalahan Tipe 2, kesalahan tipe 2 ini sangat berbahaya)
 Interpretasi: Prediksi negatif dan itu salah.
 
-Salah satu nilai yang bisa dihitung dengan Confusion Matrix adalah precision. Precision adalah salah satu metrik penting dalam evaluasi sistem pengambilan informasi yang mengukur tingkat ketepatan atau akurasi sistem dalam menemukan dokumen yang relevan dengan kebutuhan pengguna.  Berikut rumus dari precision di sistem rekomendasi:
+Salah satu nilai yang bisa dihitung dengan Confusion Matrix adalah precision. Precision adalah salah satu metrik penting dalam evaluasi sistem pengambilan informasi yang mengukur tingkat ketepatan atau akurasi sistem dalam menemukan dokumen yang relevan dengan kebutuhan pengguna, dimana Precision cocok digunakan untuk evaluasi model *Content Based Filtering*. Berikut rumus dari precision di sistem rekomendasi:
 
 ![31](https://github.com/user-attachments/assets/214489d6-57a7-452e-96ad-4871ed34ce65)
 
@@ -384,7 +383,7 @@ Dari 5 rekomendasi di atas didapatkan nilai precision sebesar 1 dari model *Cont
 
 ## Evaluasi model *Collaborative Filtering* menggunakan RMSE
 
-Root mean square error (RMSE) adalah simpangan baku residual, atau selisih rata-rata antara nilai proyeksi dan nilai aktual yang dihasilkan oleh model statistik. Mengingat bahwa rumus RMSE pada dasarnya adalah rumus simpangan baku, rumus ini seharusnya dapat dikenali oleh siapa pun yang memiliki pelatihan dalam statistik. Itu masuk akal karena RMSE sama dengan simpangan baku residual. Rumus ini menghitung varians antara nilai yang diamati dan yang diharapkan. Berikut adalah rumus dari RMSE:
+Pada tahap ini, evaluasi model *Collaborative Filtering* menggunakan RMSE (Root mean square error) karena RMSE adalah metrik yang cocok untuk evaluasi Collaborative Filtering  dalam konteks prediksi rating numerik.RMSE adalah simpangan baku residual, atau selisih rata-rata antara nilai proyeksi dan nilai aktual yang dihasilkan oleh model statistik. Mengingat bahwa rumus RMSE pada dasarnya adalah rumus simpangan baku, rumus ini seharusnya dapat dikenali oleh siapa pun yang memiliki pelatihan dalam statistik. Itu masuk akal karena RMSE sama dengan simpangan baku residual. Rumus ini menghitung varians antara nilai yang diamati dan yang diharapkan. Berikut adalah rumus dari RMSE:
 
 ![33](https://github.com/user-attachments/assets/9e171645-010d-4e31-beda-a9d6fc99f864)
 
